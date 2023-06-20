@@ -1,14 +1,24 @@
-import { Route, HashRouter, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import CatalogPage from "../pages/CatalogPage";
+import CartPage from "../pages/CartPage";
+
+export const FallbackPage = () => {
+  return (
+    <div className="w-full h-full max-h-60 md:max-h-96 flex justify-center items-center">
+      <p className="font-semibold text-xl">404 not found</p>
+    </div>
+  )
+}
 
 const StoreRoutes = () => {
   return (
-    <HashRouter>
       <Routes>
         <Route element={<CatalogPage />} path="/catalog" />
+        <Route element={<CartPage />} path="/cart" />
+        <Route element={<Navigate to="/catalog"/>} path="/" />
+        <Route path="*" element={<FallbackPage />} />
       </Routes>
-    </HashRouter>
   );
 };
 
