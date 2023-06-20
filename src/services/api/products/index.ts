@@ -5,15 +5,15 @@ export type rating = {
   count: number
 }
 export interface IProduct {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: rating;
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: rating;
 }
 
 export async function getProducts() {
-    return api.get("/products");
+  return api.get("/products");
 }
