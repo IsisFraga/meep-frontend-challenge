@@ -7,7 +7,7 @@ interface IProductCard {
 }
 
 const ProductCard = ({ product }: IProductCard) => {
-  const { handleAddToCart } = useStore();
+  const { handleAddToCart, handleProductPage } = useStore();
   const formattedPrice = formatPrice(product.price);
   const priceBeforeDiscount = formatPrice(product.price + 10);
 
@@ -39,7 +39,7 @@ const ProductCard = ({ product }: IProductCard) => {
         </div>
         <div className="flex justify-between items-center pb-2 text-sm">
           <div className="w-1/2 p-1 flex align-center">
-            <button className="flex align-center justify-between my-auto w-full bg-indigo-600 hover:bg-indigo-500 text-white border-2 border-indigo-500 hover:border-indigo-600 px-3 py-2 rounded uppercase font-poppins font-medium">
+            <button onClick={() => handleProductPage(product.id)} className="flex align-center justify-between my-auto w-full bg-indigo-600 hover:bg-indigo-500 text-white border-2 border-indigo-500 hover:border-indigo-600 px-3 py-2 rounded uppercase font-poppins font-medium">
               <svg viewBox="0 0 24 24" className="inline w-4 h-4 mr-0.5">
                 <path
                   fill="currentColor"

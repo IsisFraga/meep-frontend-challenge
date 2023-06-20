@@ -1,4 +1,5 @@
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getProducts } from "../services/api/products";
 import type { IProduct } from "../services/api/products";
 
@@ -24,6 +25,7 @@ export interface IStoreContext {
   setLoading: (loading: boolean) => void,
   toastOpen: boolean,
   setToastOpen: (toastOpen: boolean) => void,
+  handleProductPage: (id: number) => void,
 }
 
 const defaultState = {
@@ -67,6 +69,11 @@ export default function StoreProvider({children}: StoreProviderProps) {
 
     setCartItems(newCart);
   };
+  const navigate = useNavigate();
+
+  const handleProductPage = (id: number) => {
+    navigate(`/product/${id}`, { replace: true })
+  }
 
   const cartTotalIndividual = cartItems?.map((product) => product.productQuantity)
   const cartTotalItems = cartTotalIndividual?.reduce((partialSum, a) => partialSum + a, 0) ?? 0;
@@ -142,7 +149,8 @@ export default function StoreProvider({children}: StoreProviderProps) {
       productQuantity,
       totalPrice,
       setToastOpen,
-      toastOpen
+      toastOpen,
+      handleProductPage
     }}>
       {children}
     </StoreContext.Provider>
