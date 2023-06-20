@@ -1,11 +1,10 @@
 import ProductCard from "../components/ProductCard/ProductCard";
-import { CartContext } from "../context/CartContext";
-import { useContext } from "react"
+import { useStore } from "../hooks/useStore";
 
 
 const CatalogPage = () => {
 
-  const {products} = useContext(CartContext)
+  const {products} = useStore()
 
   return (
     <section className="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
@@ -15,7 +14,7 @@ const CatalogPage = () => {
       </div>
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6">
       {products?.map((product, id) => (
-        <ProductCard id={id} product={product}/>
+        <ProductCard key={id} product={product}/>
       ))}
       </div>
       <div className="flex justify-center mt-10 space-x-1">

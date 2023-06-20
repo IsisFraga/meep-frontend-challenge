@@ -1,14 +1,14 @@
 import CatalogPage from "./pages/CatalogPage"
 import Header from "./components/Header/Header"
-import CartContext from "./context/CartContext"
+import StoreProvider from "./context/StoreContext"
 
 function App() {
   return (
     <>
-      <CartContext>
+      <StoreProvider>
         <Header />
         <CatalogPage />
-      </CartContext>
+      </StoreProvider>
     </>
   )
 }
