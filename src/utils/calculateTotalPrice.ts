@@ -1,5 +1,5 @@
-import type { CartItem } from "../context/StoreContext";
-import type { IProduct } from "../services/api/products";
+import { CartItem } from "../context/StoreContext";
+import { IProduct } from "../services/api/products";
 
 interface ICalculateTotalPrice {
   products: IProduct[],
