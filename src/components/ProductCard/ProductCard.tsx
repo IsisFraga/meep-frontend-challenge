@@ -2,7 +2,6 @@ import type { IProduct } from "../../services/api/products";
 import formatPrice from "../../utils/formatPrice";
 
 interface IProductCard {
-  id: number
   product: IProduct
 }
 
