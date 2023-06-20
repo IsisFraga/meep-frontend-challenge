@@ -1,28 +1,11 @@
-import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { getProducts } from "../services/api/products";
-import type { IProduct } from "../services/api/products";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react"
+
 
 const CatalogPage = () => {
 
-  const [products, setProducts] = useState<IProduct[]>([])
-
-  async function fetchProducts() {
-    try {
-      // setLoading(true)
-      const response = await getProducts()
-      setProducts(response.data)
-    } catch (e) {
-      console.log('Error', e)
-    } finally {
-      // setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
+  const {products} = useContext(CartContext)
 
   return (
     <section className="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
