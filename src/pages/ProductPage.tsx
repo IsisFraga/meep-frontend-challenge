@@ -1,29 +1,10 @@
 import { useState } from "react";
+import { randomImages } from "../contants/randomImages";
+import { useStore } from "../hooks/useStore";
 
 const ProductPage = () => {
+  // const { product } = useStore();
   const [currentImage, setCurrentImage] = useState<number>(1);
-  const images = [
-    {
-      id: 1,
-      sampleUrl:
-        "https://images.pexels.com/photos/1289845/pexels-photo-1289845.jpeg",
-    },
-    {
-      id: 2,
-      sampleUrl:
-        "https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg",
-    },
-    {
-      id: 3,
-      sampleUrl:
-        "https://images.pexels.com/photos/1522186/pexels-photo-1522186.jpeg",
-    },
-    {
-      id: 4,
-      sampleUrl:
-        "https://images.pexels.com/photos/39317/chihuahua-dog-puppy-cute-39317.jpeg",
-    },
-  ];
 
   return (
     <div className="py-6">
@@ -82,7 +63,7 @@ const ProductPage = () => {
                   className="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center bg-cover"
                   style={{
                     backgroundImage: `url(${
-                      (images.find((im) => im.id === currentImage) || images[0])
+                      (randomImages.find((im) => im.id === currentImage) || randomImages[0])
                         .sampleUrl
                     })`,
                   }}
@@ -90,7 +71,7 @@ const ProductPage = () => {
                 </div>
               </div>
               <div className="flex mb-4 gap-2">
-                {images.map((image) => (
+                {randomImages.map((image) => (
                   <div
                     className="flex-1 px-2 bg-cover rounded scale-100 hover:scale-[1.02] transition-all"
                     style={{ backgroundImage: `url(${image.sampleUrl})` }}
@@ -139,7 +120,7 @@ const ProductPage = () => {
             <div className="flex py-4 space-x-4">
               <div className="relative">
                 <div className="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">
-                  Qty
+                  Qtd
                 </div>
                 <select className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
                   <option>1</option>
@@ -169,7 +150,7 @@ const ProductPage = () => {
                 type="button"
                 className="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white"
               >
-                Add to Cart
+                Adicionar ao carrinho
               </button>
             </div>
           </div>
