@@ -2,6 +2,7 @@ import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useSt
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../services/api/products";
 import type { IProduct } from "../services/api/products";
+import calculateTotalPrice from "../utils/calculateTotalPrice";
 
 export type CartItem = {
   productId: number;
@@ -22,6 +23,7 @@ export interface IStoreContext {
   productQuantity: number,
   setProductQuantity: (productQuantity: number) => void,
   totalPrice: number,
+  handleChangeProductSpecificQuantity: (amount: number, id: number) => void,
   setLoading: (loading: boolean) => void,
   toastOpen: boolean,
   setToastOpen: (toastOpen: boolean) => void,
@@ -44,10 +46,9 @@ export default function StoreProvider({children}: StoreProviderProps) {
 
   const [cartItems, setCartItems] = useState<CartItem[]>(defaultState.cartItems);
   const [products, setProducts] = useState<IProduct[]>(defaultState.products);
-  const [productQuantity, setProductQuantity] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(1);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
   const [toastOpen, setToastOpen] = useState(false)
-
   const handleAddToCart: IStoreContext["handleAddToCart"] = useCallback((
     { id }, quantity
   ) => {
@@ -118,14 +119,28 @@ export default function StoreProvider({children}: StoreProviderProps) {
   }
   
   const totalPrice = useMemo(() => {
-    return cartItems.reduce((accumulator, currentItem) => {
-      if (!products.length) return 0;
-      console.log('currentItem ', currentItem)
-      const currentProduct = products.find(product => product.id === currentItem?.productId) as IProduct;
-      const currentTotalPrice = currentProduct.price * currentItem?.productQuantity;
-      return accumulator + currentTotalPrice;
-    }, 0)
+    console.log('cartitems', cartItems)
+    console.log('products', products)
+    return calculateTotalPrice({cartItems, products})
   }, [cartItems])
+
+  const handleChangeProductSpecificQuantity = useCallback((amount: number, id: number) => {
+    const newArr = [...cartItems];
+    const newCartItem: CartItem = {
+      productId: id,
+      productQuantity: amount,
+    }
+
+    if (!newArr.some(p => p.productId === newCartItem.productId)) {
+      newArr.push(newCartItem)
+    } else {
+      const previousCartItem = (newArr.find(p => p.productId === newCartItem.productId) as CartItem)
+      previousCartItem.productQuantity += amount;
+    }
+  
+    setCartItems(newArr);
+    localStorage.setItem('previous-cart', JSON.stringify(newArr));
+  },[cartItems]);
 
   useEffect(() => {
     getPreviousCart();
@@ -145,6 +160,7 @@ export default function StoreProvider({children}: StoreProviderProps) {
       handleRemoveFromCart, 
       getProductById,
       handleChangeQuantity,
+      handleChangeProductSpecificQuantity,
       setProductQuantity,
       productQuantity,
       totalPrice,
