@@ -1,11 +1,14 @@
 import CatalogPage from "./pages/CatalogPage"
 import Header from "./components/Header/Header"
+import CartContext from "./context/CartContext"
 
 function App() {
   return (
     <>
-      <Header />
-      <CatalogPage />
+      <CartContext>
+        <Header />
+        <CatalogPage />
+      </CartContext>
     </>
   )
 }
