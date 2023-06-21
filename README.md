@@ -1,5 +1,8 @@
 # meep-frontend-challenge
 Frontend challenge for Meep
+
+https://meep-frontend-challenge-isis-fraga.netlify.app/
+
 -----------------------------------------------------------
 Clone o repositório
 
@@ -22,8 +25,6 @@ Para navegar até o carrinho, basta clicar no ícone do header. No carrinho é p
 Ao finalizar a compra aparecerá um toast de sucesso, o carrinho será resetado e o usuário redirecionado para o catálogo. Todas as informações do carrinho estão persistidas no localstorage. Em um cenário real, utilizaria cookies para tal.
 
 Se tivesse tido mais tempo para desenvolver, eu teria organizado melhor a componentização do projeto, e talvez isolado mais funções em "utils".
-
-Usei o hashRouter pensando na possibilidade de futuramente fazer um deploy da aplicação para um serviço como o Netlify, que só libera uma única rota.
 
 Trabalhei utilizando divisão de tasks em branches de acordo com os padrões de nomenclaturas e procurei fazer commits atômicos o máximo que o tempo me permitiu.
 
