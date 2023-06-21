@@ -100,7 +100,7 @@ export default function StoreProvider({children}: StoreProviderProps) {
     return products.find(product => product.id === id) as IProduct;
   }
 
-  const handleChangeQuantity = (id, isIncrease) => {
+  const handleChangeQuantity = (id: number, isIncrease: boolean) => {
     const newArr = [...cartItems];
     const updatedProduct = newArr.find(p => p.productId === id) as CartItem;
 
