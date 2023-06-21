@@ -13,7 +13,7 @@ Optei por utilizar o React com o Vite, apesar de a nova doc do React indicar que
 
 Como é um projeto muito simples, não fazia sentido utilizar o Next nem o Gatsby (se fosse o caso de um ecommerce real, o indicado seria usar o Next, pois lida melhor do que o Gatsby com páginas que devem ser constantemente atualizadas como é o caso de um ecommerce).
 
-Peguei alguns layouts pré prontos no codepend de páginas feitas com o Tailwind e fiz alguns ajustes que achei necessários.
+Peguei alguns layouts pré prontos no codepen de páginas feitas com o Tailwind e fiz alguns ajustes que achei necessários.
 
 Rotas criadas: catálogo, produto e carrinho. Para navegar até a página de produto, basta clicar em "VER DETALHES". Para adicionar ao carrinho, é possível adicionar pelo botão direto no catálogo (irá adicionar apenas uma unidade) ou entrar na página do produto e escolher a quantidade de unidades a ser somada no carrinho.
 
